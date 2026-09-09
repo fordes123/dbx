@@ -1,11 +1,13 @@
 import { withEnglishFallback } from "./fallback";
 import { meilisearchManagementKo } from "./meilisearchManagement";
+import { redisGroupingKo as redisGrouping } from "./redisGrouping";
 import docs from "./docs/ko";
 import { consulUiMessages } from "./consulUi";
 import { sqlServerTraceMessages as sqlServerTrace } from "./sqlServerTraceMessages";
 
 const consul = {
   ...consulUiMessages,
+  redisGrouping,
   prefixPlaceholder: "Key prefix, e.g. app/ or services/",
   newKey: "New Key",
   loadingKeys: "Loading keys...",
@@ -990,6 +992,14 @@ export default withEnglishFallback({
     sshHostKeyVerifyRemember: "이 호스트 신뢰 (향후 연결을 위해 이 키 기억)",
     sshHostKeyVerifyAccept: "수락 후 연결",
     sshHostKeyVerifyReject: "취소",
+    sshHostKeyChangedTitle: "호스트 지문이 변경되었습니다",
+    sshHostKeyChangedMessage: "{host}의 저장된 지문이 현재 서버와 일치하지 않습니다.",
+    sshHostKeyChangedCurrent: "{keyType} 지문(SHA256):",
+    sshHostKeyChangedSaved: "저장된 지문",
+    sshHostKeyChangedWarning: "이 호스트가 실제로 변경되었음을 확신하는 경우에만 계속하세요.",
+    sshHostKeyChangedClose: "닫기",
+    sshHostKeyChangedContinue: "계속",
+    sshHostKeyChangedUpdate: "업데이트 후 계속",
     sshInteractiveTitle: "SSH 인증 필요",
     sshInteractiveMessage: "SSH 서버 {host}:{port}에서 추가 인증을 요구합니다.",
     sshInteractiveDefaultPrompt: "서버에서 요청한 인증 정보를 입력하세요.",
@@ -1862,7 +1872,8 @@ export default withEnglishFallback({
     generateNull: "NULL",
     generateCurrentDatetime: "현재 날짜/시간",
     generateCurrentDate: "현재 날짜",
-    generateUuid: "UUID",
+    generateUuidV4: "UUID v4",
+    generateUuidV7: "UUID v7",
     generateIncrementId: "증가 ID",
     generateSnowflakeId: "Snowflake ID",
     generateSequenceDescription: "선택한 {count}개 셀에 연속 값을 생성합니다. 시작 값을 입력하세요.",
@@ -2014,6 +2025,7 @@ export default withEnglishFallback({
     queryError: "쿼리 오류",
     saveErrorTitle: "변경사항 저장 실패",
     dataUnavailable: "테이블 데이터를 다시 불러와야 합니다.",
+    viewSnapshotSelectionNotRestored: "이전 보기 위치는 복원했지만 선택 범위가 너무 커서 복원하지 못했습니다.",
     cachedResultUnavailable: "캐시된 결과가 없거나 호환되지 않습니다.",
     reexecuteQuery: "쿼리 다시 실행",
     dataUnavailableHintPrefix: "",
@@ -4947,6 +4959,7 @@ export default withEnglishFallback({
     rebuildDataOnlyDisabled: "데이터만 전송할 때는 재구축할 수 없습니다. 구조 및 데이터 또는 구조만을 선택하세요.",
     rebuildUnsupportedDisabled: "선택한 대상 엔진은 대상 테이블 재구축을 지원하지 않습니다.",
     rebuildPreviewUnavailable: "백엔드가 재구축 계획을 반환하지 않아 전송을 시작하지 않았습니다. 재구축 미리 보기를 지원하는 백엔드에서 다시 시도하세요.",
+    rebuildMissingTargets: "존재하지 않는 대상 테이블이 있습니다. 백업 없이 바로 생성됩니다.",
     previewFailed: "전송을 준비할 수 없습니다: {message}",
     start: "이전 시작",
     startConfirmTitle: "전송 시작 확인",
@@ -5876,7 +5889,7 @@ export default withEnglishFallback({
     appearanceTab: "모양",
     navigationTab: "탐색",
     dataTab: "데이터",
-    sqlFileSizeTab: "SQL 파일 크기",
+    sqlFileSection: "SQL 파일",
     tunnelsTab: "터널",
     tunnelsDescription: "재사용 가능한 SSH/프록시/HTTP 터널 설정입니다. 한 번 구성한 후 연결의 터널 탭에서 프로필을 선택하세요. 여기서의 편집은 이 프로필을 사용하는 모든 연결에 적용됩니다.",
     tunnelsEmpty: "아직 터널 프로필이 없습니다. 여기서 만든 후 연결의 터널 설정에서 선택하세요.",
@@ -6878,8 +6891,8 @@ export default withEnglishFallback({
     csvQuoteModeAll: "모든 필드",
     csvQuoteModeNecessary: "필수 필드만",
     shortcutConvertNamingStyle: "네이밍 스타일 전환",
-    dataGridAutoHideFilterBuilder: "필터 적용 후 조건 편집기 자동 숨기기",
-    dataGridAutoHideFilterBuilderDescription: "끄면 필터를 적용한 후에도 조건 편집기가 유지되어 계속 조정하기 편리합니다.",
+    dataGridKeepFilterEditorExpanded: "필터 편집기 항상 펼치기",
+    dataGridKeepFilterEditorExpandedDescription: "조건 및 텍스트 보기에서 편집기를 항상 펼칩니다.",
   },
   driverStore: {
     jreDirRemoveFailed: "이전 JRE 디렉터리 제거 실패: {path} (원래 오류: {error})",

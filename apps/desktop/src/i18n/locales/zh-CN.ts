@@ -1,9 +1,11 @@
+import { redisGroupingZhCN as redisGrouping } from "./redisGrouping";
 import { withEnglishFallback } from "./fallback";
 import docs from "./docs/zh-CN";
 import { consul } from "./consulZhCN";
 import { meilisearchManagementZhCN } from "./meilisearchManagement";
 
 export default withEnglishFallback({
+  redisGrouping,
   customType: {
     kinds: {
       base: "基础类型",
@@ -1039,6 +1041,14 @@ export default withEnglishFallback({
     sshHostKeyVerifyRemember: "信任此主机（记住该密钥用于以后的连接）",
     sshHostKeyVerifyAccept: "接受并连接",
     sshHostKeyVerifyReject: "取消",
+    sshHostKeyChangedTitle: "主机指纹已变化",
+    sshHostKeyChangedMessage: "{host} 的已保存指纹与当前服务器不一致。",
+    sshHostKeyChangedCurrent: "{keyType} 指纹为 SHA256:",
+    sshHostKeyChangedSaved: "已保存的指纹",
+    sshHostKeyChangedWarning: "只有在你确认这台主机确实变更过时才继续。",
+    sshHostKeyChangedClose: "关闭",
+    sshHostKeyChangedContinue: "继续",
+    sshHostKeyChangedUpdate: "更新并继续",
     sshInteractiveTitle: "需要 SSH 验证",
     sshInteractiveMessage: "SSH 服务器 {host}:{port} 要求完成额外验证。",
     sshInteractiveDefaultPrompt: "请输入服务器要求的验证信息。",
@@ -1962,7 +1972,8 @@ export default withEnglishFallback({
     generateNull: "NULL",
     generateCurrentDatetime: "当前日期时间",
     generateCurrentDate: "当前日期",
-    generateUuid: "UUID",
+    generateUuidV4: "UUID v4",
+    generateUuidV7: "UUID v7",
     generateIncrementId: "递增 ID",
     generateSnowflakeId: "雪花 ID",
     generateSequenceDescription: "为已选 {count} 个单元格生成连续值，请输入起始值。",
@@ -2127,6 +2138,7 @@ export default withEnglishFallback({
     queryError: "查询出错",
     saveErrorTitle: "数据修改保存失败",
     dataUnavailable: "表数据需要重新加载。",
+    viewSnapshotSelectionNotRestored: "已恢复上次的视图位置，但过大的选择范围未能保留。",
     dataUnavailableHintPrefix: "按 ",
     dataUnavailableHintSuffix: " 或点击下方刷新按钮重新加载。",
     cachedResultUnavailable: "缓存结果缺失或不兼容。",
@@ -5611,6 +5623,7 @@ export default withEnglishFallback({
     rebuildDataOnlyDisabled: "仅数据模式不支持重建，请选择“结构和数据”或“仅结构”。",
     rebuildUnsupportedDisabled: "当前目标引擎不支持重建目标表。",
     rebuildPreviewUnavailable: "后端未返回重建计划，传输尚未开始。请使用支持重建预览的后端后重新预览。",
+    rebuildMissingTargets: "部分目标表尚不存在，将直接创建（无备份）。",
     previewFailed: "无法准备传输：{message}",
     start: "开始传输",
     startConfirmTitle: "确认开始传输",
@@ -6545,7 +6558,7 @@ export default withEnglishFallback({
     appearanceTab: "外观",
     navigationTab: "导航",
     dataTab: "数据",
-    sqlFileSizeTab: "SQL 文件大小",
+    sqlFileSection: "SQL 文件",
     tunnelsTab: "隧道维护",
     tunnelsDescription: "可复用的 SSH / 代理 / HTTP 隧道配置。一次配置，之后在连接的隧道页签中选择档案即可；此处的修改会对所有使用该档案的连接生效。",
     tunnelsEmpty: "还没有隧道档案。先在这里创建，然后在连接的隧道设置中选择使用。",
@@ -6732,8 +6745,8 @@ export default withEnglishFallback({
     dataGridDisplay: "数据表格显示",
     dataGridFilterView: "表格筛选视图",
     dataGridFilterViewDescription: "选择弹出式快捷筛选、固定条件面板或紧凑文本条件面板。",
-    dataGridAutoHideFilterBuilder: "应用筛选后自动隐藏条件编辑器",
-    dataGridAutoHideFilterBuilderDescription: "关闭后，应用筛选后仍保留条件编辑器，方便继续调整。",
+    dataGridKeepFilterEditorExpanded: "筛选编辑器常驻展开",
+    dataGridKeepFilterEditorExpandedDescription: "始终在条件视图和文本视图中展开编辑器。",
     dataGridFilterViewPreview: "效果预览",
     dataGridFilterViewPreviewExpand: "展开效果预览",
     dataGridFilterViewPreviewCollapse: "收起效果预览",

@@ -1,3 +1,4 @@
+import { redisGroupingZhTW as redisGrouping } from "./redisGrouping";
 import { withEnglishFallback } from "./fallback";
 import { meilisearchManagementZhTW } from "./meilisearchManagement";
 import docs from "./docs/zh-TW";
@@ -81,6 +82,7 @@ const consul = {
 };
 
 export default withEnglishFallback({
+  redisGrouping,
   customType: {
     kinds: {
       base: "基礎型別",
@@ -1083,6 +1085,14 @@ export default withEnglishFallback({
     sshHostKeyVerifyRemember: "信任此主機（記住此金鑰用於之後的連線）",
     sshHostKeyVerifyAccept: "接受並連線",
     sshHostKeyVerifyReject: "取消",
+    sshHostKeyChangedTitle: "主機指紋已變化",
+    sshHostKeyChangedMessage: "{host} 的已儲存指紋與目前伺服器不一致。",
+    sshHostKeyChangedCurrent: "{keyType} 指紋為 SHA256:",
+    sshHostKeyChangedSaved: "已儲存的指紋",
+    sshHostKeyChangedWarning: "只有在你確認這台主機確實變更過時才繼續。",
+    sshHostKeyChangedClose: "關閉",
+    sshHostKeyChangedContinue: "繼續",
+    sshHostKeyChangedUpdate: "更新並繼續",
     sshInteractiveTitle: "需要 SSH 驗證",
     sshInteractiveMessage: "SSH 伺服器 {host}:{port} 要求完成額外驗證。",
     sshInteractiveDefaultPrompt: "請輸入伺服器要求的驗證資訊。",
@@ -1879,7 +1889,8 @@ export default withEnglishFallback({
     generateNull: "NULL",
     generateCurrentDatetime: "目前日期時間",
     generateCurrentDate: "目前日期",
-    generateUuid: "UUID",
+    generateUuidV4: "UUID v4",
+    generateUuidV7: "UUID v7",
     generateIncrementId: "遞增 ID",
     generateSnowflakeId: "雪花 ID",
     generateSequenceDescription: "為已選 {count} 個儲存格產生連續值，請輸入起始值。",
@@ -2041,6 +2052,7 @@ export default withEnglishFallback({
     searchColumn: "搜尋欄/註解...",
     noColumnsFound: "未找到欄",
     dataUnavailable: "資料表資料需要重新載入。",
+    viewSnapshotSelectionNotRestored: "已還原上次的檢視位置，但過大的選取範圍未能保留。",
     dataUnavailableHintPrefix: "按 ",
     dataUnavailableHintSuffix: " 或點擊下方重新整理來重新載入。",
     queryError: "查詢出錯",
@@ -4570,6 +4582,7 @@ export default withEnglishFallback({
     rebuildDataOnlyDisabled: "僅資料模式不支援重建，請選擇「結構和資料」或「僅結構」。",
     rebuildUnsupportedDisabled: "目前目標引擎不支援重建目標表。",
     rebuildPreviewUnavailable: "後端未傳回重建計畫，傳輸尚未開始。請使用支援重建預覽的後端後重新預覽。",
+    rebuildMissingTargets: "部分目標資料表尚不存在，將直接建立（無備份）。",
     previewFailed: "無法準備傳輸：{message}",
     start: "開始傳輸",
     startConfirmTitle: "確認開始傳輸",
@@ -5469,7 +5482,7 @@ export default withEnglishFallback({
     securityTab: "安全",
     aboutTab: "關於我們",
     dataTab: "資料",
-    sqlFileSizeTab: "SQL 檔案大小",
+    sqlFileSection: "SQL 檔案",
     tunnelsTab: "隧道維護",
     tunnelsDescription: "可重複使用的 SSH / 代理 / HTTP 隧道設定。一次設定，之後在連線的隧道頁籤中選擇設定檔即可；此處的變更會套用到所有使用該設定檔的連線。",
     tunnelsEmpty: "還沒有隧道設定檔。先在這裡建立，然後在連線的隧道設定中選擇使用。",
@@ -6479,8 +6492,8 @@ export default withEnglishFallback({
     customUiBorder: "邊框",
     customUiSidebar: "側邊欄",
     shortcutConvertNamingStyle: "切換命名風格",
-    dataGridAutoHideFilterBuilder: "應用篩選後自動隱藏條件編輯器",
-    dataGridAutoHideFilterBuilderDescription: "關閉後，應用篩選後仍保留條件編輯器，方便繼續調整。",
+    dataGridKeepFilterEditorExpanded: "篩選編輯器常駐展開",
+    dataGridKeepFilterEditorExpandedDescription: "始終在條件檢視和文字檢視中展開編輯器。",
   },
   driverStore: {
     jreDirRemoveFailed: "無法刪除舊的 JRE 目錄：{path}（原始錯誤：{error}）",
