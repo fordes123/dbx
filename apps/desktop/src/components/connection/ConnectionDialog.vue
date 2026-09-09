@@ -3936,7 +3936,9 @@ function connectionConfigForSubmit(id: string, generatedName = ""): ConnectionCo
     config.connection_string = undefined;
     config.url_params = "";
   } else if (config.db_type === "cassandra") {
-    if (!config.ssl) {
+    // Go 侧在配置了 truststore/keystore 时会自动启用 TLS，前端保持一致：有 store 配置就不丢弃 external_config。
+    const cassandraHasTlsStore = Boolean(cassandraTls.truststore_path.trim() || cassandraTls.truststore_password) || Boolean(cassandraTls.keystore_path.trim() || cassandraTls.keystore_password);
+    if (!config.ssl && !cassandraHasTlsStore) {
       config.external_config = undefined;
     } else {
       if (cassandraTls.truststore_password && !cassandraTls.truststore_path.trim()) {
